@@ -9,12 +9,14 @@ export function HomePageController() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchCompanies() {
+    fetchCompanies();
+  }, []);
+  async function fetchCompanies(city = "") {
       try {
         const response = await axios.post(
           `${API_BASE_URL}/getAllCompanies`,
           {
-            city: "",
+            city: city,
             name: "",
             sortBy: "name",
             sortOrder: "DESC",
@@ -35,8 +37,5 @@ export function HomePageController() {
       }
     }
 
-    fetchCompanies();
-  }, []);
-
-  return { companies, loading, error };
+  return { companies, loading, error, fetchCompanies };
 }

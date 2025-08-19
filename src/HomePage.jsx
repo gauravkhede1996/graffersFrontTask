@@ -40,7 +40,7 @@ function StarRating({ rating }) {
 
 
 export default function HomePage() {
-  const { companies, } = HomePageController();
+  const { companies, fetchCompanies} = HomePageController();
 console.log(companies,"companies")
   const [sortBy, setSortBy] = useState("name");
   const [city, setCity] = useState("");
@@ -51,7 +51,9 @@ console.log(companies,"companies")
     founded: "",
     city: "",
   });
-
+  const handleFindCompany = () => {
+    fetchCompanies(city); 
+  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -78,16 +80,14 @@ console.log(companies,"companies")
                   type="text"
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="pl-4 pr-10 border rounded w-full h-9 border-gray-300"
-                  readOnly
-                />
+                  className="pl-4 pr-10 border rounded w-full h-9 border-gray-300"/>
                 <MapPin className="absolute right-3 top-1/2 transform -translate-y-1/2 text-purple-600 w-4 h-4" />
               </div>
             </div>
 
             {/* Buttons */}
             <div className="flex gap-2 mt-6">
-              <button className="bg-gradient-to-r from-[#D100F3] to-[#002BC5] hover:bg-purple-700 text-white px-5 py-2 rounded">
+              <button  onClick={handleFindCompany}  className="bg-gradient-to-r from-[#D100F3] to-[#002BC5] hover:bg-purple-700 text-white px-5 py-2 rounded">
                 Find Company
               </button>
               <button
