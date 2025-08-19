@@ -1,7 +1,16 @@
-import React from "react";
-// import HomePage from "./HomePage";
-import CompanyDetailPage from "./CompanyDetailPage";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './HomePage';
+import Company from './CompanyDetailPage';
 
-export default function App() {
-return <CompanyDetailPage />;
-}
+const App = () => {
+  return (
+    <Router>
+        <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/company-detail" element={<Company />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default App;
